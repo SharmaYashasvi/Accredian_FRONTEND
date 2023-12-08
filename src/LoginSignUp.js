@@ -37,7 +37,7 @@ const LoginSignUp = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/login",
+        "https://accredian-task.onrender.com/api/v1/login",
         values
       );
       setIsLoading(false);
@@ -86,7 +86,7 @@ const LoginSignUp = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/register",
+          "https://accredian-task.onrender.com/api/v1/register",
           regValues
         );
         setIsLoading(false);
