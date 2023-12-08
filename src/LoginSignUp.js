@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState} from "react";
+import React, { Fragment, useRef, useState } from "react";
 import "./LoginSignUp.css";
 import { Link } from "react-router-dom";
 import { IoMail } from "react-icons/io5";
@@ -155,10 +155,10 @@ const LoginSignUp = () => {
             </div>
             <Link to="/password/forgot">Forget Password ?</Link>
             <input
-              disabled={isLoading}
               type="submit"
-              value="Login"
+              value={isLoading ? "Wait...." : "Login"}
               className="loginBtn"
+              disabled={isLoading}
             />
           </form>
 
@@ -212,7 +212,7 @@ const LoginSignUp = () => {
             <input
               disabled={isLoading}
               type="submit"
-              value="Register"
+              value={isLoading ? "Wait...." : "Register"}
               className="signUpBtn"
             />
           </form>
