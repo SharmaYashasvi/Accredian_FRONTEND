@@ -5,6 +5,7 @@ import { IoMail } from "react-icons/io5";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const LoginSignUp = () => {
   // isLoading
@@ -48,17 +49,19 @@ const LoginSignUp = () => {
         responseData.message == "Wrong password!"
       ) {
         // Successful login
-        alert("Either Email Or Password is Wrong");
+        // alert("Either Email Or Password is Wrong");
+        toast.error("Either Email Or Password is Wrong!!")
       }
       if (responseData.accessToken) {
         // Successful login
-        alert("Login Successful!!");
+        // alert("Login Successful!!");
+        toast.success("Login Successful!!")
       }
     } catch (error) {
       if (error.response) {
         // Invalid credentials or other server response error
         setIsLoading(false);
-        alert("Invalid credentials. Please check your email and password.");
+        toast.error("Invalid credentials. Please check your email and password.");
       } else {
         // Request setup error or network error
         console.error("Error occurred during login:", error.message);
@@ -82,19 +85,22 @@ const LoginSignUp = () => {
     setIsLoading(true);
     const { password, confirmpassword } = regValues;
     if (password !== confirmpassword) {
-      alert("Passwords do not match!");
+      // alert("Passwords do not match!");
+      toast.error("Passwords do not match!");
     } else {
       try {
         const response = await axios.post(
-          "https://accredian-task.onrender.com/api/v1/register",
+          "http://localhost:5000/api/v1/register",
           regValues
         );
         setIsLoading(false);
         const responseData = response.data;
         if (responseData.error === "Email already exists!") {
-          alert("User already exists! Please log in or use a different email.");
+          // alert("User already exists! Please log in or use a different email.");
+          toast.error("User already exists! Please log in or use a different email!");
         } else if (responseData.message === "Ok") {
-          alert("Successfully Registered!");
+          // alert("Successfully Registered!");
+          toast.success("Successfully Registered!");
           switchToLoginTab(); // Switch to the login tab
         }
       } catch (error) {
@@ -223,3 +229,8 @@ const LoginSignUp = () => {
 };
 
 export default LoginSignUp;
+
+
+
+
+
